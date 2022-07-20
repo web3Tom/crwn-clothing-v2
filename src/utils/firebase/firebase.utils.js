@@ -16,16 +16,22 @@ const firebaseConfig = {
   appId: "1:68976234992:web:3b6ba4cfbdcffbc30c0d35",
 };
 
+//Firebase initialize
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider(); //GoogleAuth is a class from FB
+//Providers
+const googleprovider = new GoogleAuthProvider(); //GoogleAuth is a class from FB
 
-provider.setCustomParameters({
+//Google Prompt default
+googleprovider.setCustomParameters({
   prompt: "select_account",
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleprovider);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleprovider);
 
 export const db = getFirestore();
 
