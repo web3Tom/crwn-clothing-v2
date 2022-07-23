@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -29,6 +31,7 @@ googleprovider.setCustomParameters({
   prompt: "select_account",
 });
 
+//auth keeps track of what users are signed in at the moment
 export const auth = getAuth();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleprovider);
@@ -46,11 +49,7 @@ export const createUserDocumentFromAuth = async (
 
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  console.log(userDocRef);
-
   const userSnapshot = await getDoc(userDocRef);
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists());
 
   //If user snapshot does not exist
   if (!userSnapshot.exists()) {
@@ -85,3 +84,10 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+//Sign out user
+export const signOutUser = async () => await signOut(auth);
+
+//Observable listener
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

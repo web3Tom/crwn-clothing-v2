@@ -75,6 +75,7 @@ const SignUpForm = () => {
           onChange={handleChange}
           name="email"
           value={email}
+          autoComplete="on"
         />
 
         <FormInput
@@ -84,6 +85,7 @@ const SignUpForm = () => {
           onChange={handleChange}
           name="password"
           value={password}
+          autoComplete="on"
         />
 
         <FormInput
@@ -93,6 +95,7 @@ const SignUpForm = () => {
           onChange={handleChange}
           name="confirmPassword"
           value={confirmPassword}
+          autoComplete="on"
         />
         <Button buttonType="inverted" type="submit">
           Sign Up
