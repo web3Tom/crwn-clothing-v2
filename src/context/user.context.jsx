@@ -11,8 +11,6 @@ export const UserContext = createContext({
   currentUser: null,
 });
 
-//createUserDocumentFromAuth(user);
-
 //Provider - the actual component; the .provider is the component that's wrapped around any component that needs access to the values inside
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
