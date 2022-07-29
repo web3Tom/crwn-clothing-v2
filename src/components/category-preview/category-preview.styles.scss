@@ -1,0 +1,23 @@
+.category-preview-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  .title-container {
+    text-align: center;
+    margin: 50px 0 30px;
+  }
+
+  .title {
+    font-size: 40px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .preview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+  }
+}

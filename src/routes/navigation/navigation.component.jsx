@@ -1,12 +1,12 @@
 import "./navigation.styles.scss";
 import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { ReactComponent as LogoIMG } from "../../../assets/crown.svg";
-import { UserContext } from "../../../context/user.context";
-import { signOutUser } from "../../../utils/firebase/firebase.utils";
-import { CartContext } from "../../../context/cart.context";
-import CartIcon from "../../cart-icon/cart-icon";
-import CartDropdown from "../../cart-dropdown/cart-dropdown.component";
+import { ReactComponent as LogoIMG } from "../../assets/crown.svg";
+import { UserContext } from "../../context/user.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { CartContext } from "../../context/cart.context";
+import CartIcon from "../../components/cart-icon/cart-icon";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
