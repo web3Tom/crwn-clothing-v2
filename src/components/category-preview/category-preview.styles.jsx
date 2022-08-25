@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const CategoryPreviewContainer = styled.div`
@@ -17,16 +17,6 @@ export const CategoryTitle = styled(Link)`
   font-weight: 300;
   margin-bottom: 20px;
   cursor: pointer;
-  transition: color 0.5s;
-  transition-timing-function: ease-in;
-
-  ${(props) =>
-    props.animated &&
-    css`
-      &:hover {
-        color: gray;
-      }
-    `}
 `;
 
 export const PreviewMap = styled.div`
