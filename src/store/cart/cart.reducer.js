@@ -1,4 +1,5 @@
 import { CART_ACTION_TYPES } from "./cart.types";
+// import { createSlice } from "@reduxjs/toolkit";
 
 export const CART_INITIAL_STATE = {
   isCartOpen: false,
