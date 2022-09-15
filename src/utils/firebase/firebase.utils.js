@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import {
   getAuth,
   signInWithRedirect,
@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from "firebase/auth";
+} from 'firebase/auth';
 import {
   getFirestore,
   doc,
@@ -18,15 +18,15 @@ import {
   writeBatch,
   query,
   getDocs,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBeqo4UDHSQOmH67dd2TyDMCV4a-U80F-M",
-  authDomain: "crwn-clothing-db-74360.firebaseapp.com",
-  projectId: "crwn-clothing-db-74360",
-  storageBucket: "crwn-clothing-db-74360.appspot.com",
-  messagingSenderId: "68976234992",
-  appId: "1:68976234992:web:3b6ba4cfbdcffbc30c0d35",
+  apiKey: 'AIzaSyBeqo4UDHSQOmH67dd2TyDMCV4a-U80F-M',
+  authDomain: 'crwn-clothing-db-74360.firebaseapp.com',
+  projectId: 'crwn-clothing-db-74360',
+  storageBucket: 'crwn-clothing-db-74360.appspot.com',
+  messagingSenderId: '68976234992',
+  appId: '1:68976234992:web:3b6ba4cfbdcffbc30c0d35',
 };
 
 //Firebase initialize
@@ -37,7 +37,7 @@ const googleprovider = new GoogleAuthProvider(); //GoogleAuth is a class from FB
 
 //Google Prompt default
 googleprovider.setCustomParameters({
-  prompt: "select_account",
+  prompt: 'select_account',
 });
 
 //auth keeps track of what users are signed in at the moment
@@ -68,7 +68,7 @@ export const addCollectionAndDocuments = async (
 
 //Get products and categories
 export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, "categories");
+  const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
@@ -82,7 +82,7 @@ export const createUserDocumentFromAuth = async (
 ) => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, "users", userAuth.uid);
+  const userDocRef = doc(db, 'users', userAuth.uid);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -99,11 +99,11 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log("error creating the user", error.message);
+      console.log('error creating the user', error.message);
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
 //Create Auth via email and password
@@ -126,3 +126,16 @@ export const signOutUser = async () => await signOut(auth);
 //Observable listener
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
